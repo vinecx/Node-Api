@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express(),
       bodyParser = require("body-parser");
-      port = 8080;
+      port = process.env.PORT || 3000;
 
     
 app.use(bodyParser.json());
