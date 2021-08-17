@@ -10,14 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bbachi/react-nodejs-example.git"
+    "url": "https://github.com/vinecx/Node-Api"
   },
-  "author": "Bhargav Bachina",
+  "author": "Vinicius de Almeida",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bbachi/react-nodejs-example/issues"
-  },
-  "homepage": "https://github.com/bbachi/react-nodejs-example#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
