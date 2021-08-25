@@ -22,7 +22,7 @@ var users = [
 
 
 exports.post = (req, res, next) => {
-   const user = req.body.user;
+   const user = req.body;
    console.log('Adding user:::::', user);
    users.push(user);
    res.json({ok: true});
