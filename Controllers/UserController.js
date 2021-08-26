@@ -1,6 +1,4 @@
-
-
-
+const { getAll, insertDocument } = require("../repository/user/users");
 
 var users = [
    {
@@ -23,8 +21,7 @@ var users = [
 
 exports.post = (req, res, next) => {
    const user = req.body;
-   console.log('Adding user:::::', user);
-   users.push(user);
+   insertDocument(user);
    res.json({ok: true});
  };
   
@@ -49,8 +46,13 @@ exports.post = (req, res, next) => {
 }; 
 
  exports.get = (req, res, next) => {
+   getAll().then((x) => {
+    res.json(x)
+   }).catch((reason) => {
+     res.json({erro: reason})
+     console.log(reason)
+   })
    console.log('api/users called!')
-   res.json(users);
  };
   
  exports.getById = (req, res, next) => {
