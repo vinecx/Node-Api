@@ -1,4 +1,5 @@
-const { getAll, insertDocument, DeleteAll, DeleteByID } = require("../repository/user/users");
+const { getAll, insertDocument, DeleteAll, DeleteByID, Login } = require("../repository/user/users");
+const jwt = require('jsonwebtoken');
 
 exports.post = (req, res, next) => {
     const user = req.body;
@@ -47,3 +48,24 @@ exports.post = (req, res, next) => {
     let id = req.params.id;
     res.status(200).send(`Rota GET com ID! ${id}`);
  };
+
+ exports.login = (req, res, next) => {
+   let user = req.body.user
+   let password = req.body.password
+
+  Login(user, password).then((result) => {
+    
+    if(result){
+      const id = result.id;
+      const token = jwt.sign({ id }, process.env.SECRET, {
+         expiresIn: 86400 // expires in 25 hours
+      });
+      return res.json({ auth: true, token: token, id: result });
+      }
+      
+      res.status(500).json({message: 'Credenciais inválidas!'});
+  }).catch((error) => {
+    res.status(500).send({erro: error.message})
+  })
+
+ }

@@ -18,7 +18,7 @@ async function insertDocument(params) {
 }
 async function DeleteByID(id) {
     const db = await database.connect();
-    return db.collection("Users").deleteOne({_id: ObjectId(id)})
+    return db.collection("Users").deleteOne({_id: new ObjectId(id)})
 }
 
 async function DeleteAll() {
@@ -26,8 +26,13 @@ async function DeleteAll() {
     return db.collection("Users").remove()
 }
 
+async function Login(user, pwd) {
+    const db = await database.connect();
+    return db.collection("Login").findOne({ $and: [{userName: `${user}`}, {password: `${pwd}`}]})
+}
+
 async function disconnect() {
     return database.disconnect();
 }
  
-module.exports = { getAll, getByID, insertDocument,disconnect, DeleteAll, DeleteByID }
+module.exports = { getAll, getByID, insertDocument,disconnect, DeleteAll, DeleteByID, Login }
