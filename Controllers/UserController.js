@@ -1,4 +1,4 @@
-const { getAll, insertDocument, DeleteAll } = require("../repository/user/users");
+const { getAll, insertDocument, DeleteAll, DeleteByID } = require("../repository/user/users");
 
 exports.post = (req, res, next) => {
     const user = req.body;
@@ -18,9 +18,11 @@ exports.post = (req, res, next) => {
   
  exports.delete = (req, res, next) => {
     const id = req.params.id;
-    console.log('api/delete User BY ID called!')
-    users.splice(id, 1)
-    res.json({ok: true});
+    DeleteByID(id).then((result) => {
+      res.json(result)
+    }).catch((error) => {
+      res.json(error)
+    })
  };
 
  exports.deleteAll = (req, res, next) => {
