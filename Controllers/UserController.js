@@ -1,9 +1,12 @@
 const { getAll, insertDocument, DeleteAll } = require("../repository/user/users");
 
 exports.post = (req, res, next) => {
-   const user = req.body;
-   insertDocument(user);
-   res.json({ok: true});
+    const user = req.body;
+    insertDocument(user).then((response) => {
+      res.status(200).json(response.insertedId)
+    }).catch((error) => {
+      res.status(500).json(error.message)
+    });
  };
   
  exports.put = (req, res, next) => {
