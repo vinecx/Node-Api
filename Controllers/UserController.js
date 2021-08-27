@@ -1,6 +1,5 @@
 const { getAll, insertDocument, DeleteAll, DeleteByID, Login } = require("../repository/user/users");
 const jwt = require('jsonwebtoken');
-const fs = require('fs')
 
 exports.post = (req, res, next) => {
     const user = req.body;
@@ -58,10 +57,8 @@ exports.post = (req, res, next) => {
     
     if(result){
       const id = result.id;
-      var privateKey = fs.readFileSync('./private.key', 'utf8')
-      const token = jwt.sign({ id }, privateKey, {
-         expiresIn: 86400, // expires in 25 hours
-         algorithm:  "RS256" //SHA-256 hash signature
+      const token = jwt.sign({ id }, process.env.SECRET, {
+         expiresIn: 86400 // expires in 24 hours
       });
       return res.status(200).json({ auth: true, token: token });
       }
