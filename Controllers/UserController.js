@@ -60,7 +60,7 @@ exports.post = (req, res, next) => {
       const token = jwt.sign({ id }, process.env.SECRET, {
          expiresIn: 86400 // expires in 25 hours
       });
-      return res.status(200).res({ auth: true, token: token, id: result });
+      return res.status(200).res({ auth: true, token: token });
       }
       
       res.status(500).json({message: 'Credenciais inválidas!'});
