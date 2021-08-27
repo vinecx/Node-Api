@@ -23,6 +23,8 @@ exports.post = (req, res, next) => {
  exports.deleteAll = (req, res, next) => {
     DeleteAll().then((value) => {
       res.json(value);
+    }).catch((exception) => {
+      res.json(exception)
     })
 }; 
 
