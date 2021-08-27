@@ -18,7 +18,7 @@ async function insertDocument(params) {
 }
 async function DeleteByID(id) {
     const db = await database.connect();
-    return db.collection("Users").remove({_id : id})
+    return db.collection("Users").deleteOne({_id: ObjectId(id)})
 }
 
 async function DeleteAll() {
