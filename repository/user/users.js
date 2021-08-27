@@ -16,8 +16,14 @@ async function insertDocument(params) {
     const db = await database.connect();
     return db.collection("Users").insertOne(params)
 }
+
+async function DeleteAll() {
+    const db = await database.connect();
+    return db.collection("Users").remove()
+}
+
 async function disconnect() {
     return database.disconnect();
 }
  
-module.exports = { getAll, getByID, insertDocument,disconnect }
+module.exports = { getAll, getByID, insertDocument,disconnect, DeleteAll }

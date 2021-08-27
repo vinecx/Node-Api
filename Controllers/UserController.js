@@ -1,23 +1,4 @@
-const { getAll, insertDocument } = require("../repository/user/users");
-
-var users = [
-   {
-     firstName: "first1",
-     lastName: "last1",
-     email: "abc@gmail.com"
-   },
-   {
-     firstName: "first2",
-     lastName: "last2",
-     email: "abc@gmail.com"
-   },
-   {
-     firstName: "first3",
-     lastName: "last3",
-     email: "abc@gmail.com"
-   }
- ];
-
+const { getAll, insertDocument, DeleteAll } = require("../repository/user/users");
 
 exports.post = (req, res, next) => {
    const user = req.body;
@@ -40,9 +21,9 @@ exports.post = (req, res, next) => {
  };
 
  exports.deleteAll = (req, res, next) => {
-   console.log('api/delete ALL User called!')
-   users = []
-   res.json({ok: true});
+    DeleteAll().then((value) => {
+      res.json(value);
+    })
 }; 
 
  exports.get = (req, res, next) => {
