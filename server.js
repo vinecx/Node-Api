@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 //  AUTHENTICATION
 app.post('/login', (req, res, next) => {
-    if(req.body.user === 'luiz' && req.body.password === '123'){
+    if(req.body.user === 'teste' && req.body.password === '123'){
       //auth ok
       const id = 1; //esse id viria do banco de dados
       const token = jwt.sign({ id }, process.env.SECRET, {
